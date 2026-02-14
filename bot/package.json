@@ -1,7 +1,7 @@
 {
-  "name": "ai-hisho-bot",
-  "version": "0.1.0",
-  "description": "AI秘書 - Slack Bot powered by OpenClaw",
+  "name": "tasuku-bot",
+  "version": "0.2.0",
+  "description": "たすく — Slack Bot AI秘書 powered by OpenClaw",
   "main": "src/index.js",
   "type": "module",
   "scripts": {
@@ -10,8 +10,9 @@
   },
   "dependencies": {
     "@slack/bolt": "^4.1.0",
-    "ws": "^8.18.0",
+    "dotenv": "^16.4.0",
+    "express": "^5.1.0",
     "stripe": "^17.0.0",
-    "dotenv": "^16.4.0"
+    "ws": "^8.18.0"
   }
 }

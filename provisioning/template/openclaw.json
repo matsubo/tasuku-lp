@@ -1,0 +1,10 @@
+{
+  "gateway": {
+    "port": __PORT__,
+    "token": "__TOKEN__",
+    "chatCompletions": {
+      "enabled": true,
+      "defaultModel": "anthropic/claude-sonnet-4-20250514"
+    }
+  }
+}
