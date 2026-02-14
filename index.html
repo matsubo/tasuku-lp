@@ -296,6 +296,22 @@ section{padding:clamp(80px,12vw,160px) 0}
 .faq-a-inner{padding:0 0 24px;font-size:.9rem;color:var(--muted);line-height:1.8}
 .faq-item.open .faq-a{max-height:300px}
 
+/* ========== COMPANY ========== */
+.company-table{max-width:640px;margin-top:48px}
+.company-row{
+  display:flex;padding:16px 0;border-bottom:1px solid var(--border);
+  gap:24px;align-items:center;
+}
+.company-label{
+  flex:0 0 120px;font-family:var(--mono);font-size:.75rem;
+  letter-spacing:.05em;color:var(--muted);text-transform:uppercase;
+}
+.company-value{font-size:.95rem;line-height:1.6}
+@media(max-width:768px){
+  .company-row{flex-direction:column;gap:4px}
+  .company-label{flex:none}
+}
+
 /* ========== FINAL CTA ========== */
 .final-cta{
   text-align:center;padding:clamp(100px,15vw,200px) 0;
@@ -556,6 +572,50 @@ footer .container{display:flex;justify-content:space-between;align-items:center;
       <div class="faq-item reveal reveal-delay-4">
         <div class="faq-q">既存のツールと連携できますか？</div>
         <div class="faq-a"><div class="faq-a-inner">Google Workspace、Microsoft 365、Notion、Jira など主要なツールとの連携に対応しています。API 経由でのカスタム連携も可能です。</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPANY -->
+<section class="company" id="company">
+  <div class="container">
+    <div class="section-label reveal">Company</div>
+    <h2 class="section-heading reveal reveal-delay-1">
+      運営会社
+    </h2>
+    <div class="company-table reveal reveal-delay-2">
+      <div class="company-row">
+        <div class="company-label">社名</div>
+        <div class="company-value">合同会社テラレン（Teraren, LLC.）</div>
+      </div>
+      <div class="company-row">
+        <div class="company-label">代表社員</div>
+        <div class="company-value">
+          <svg width="140" height="20" viewBox="0 0 140 20" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="代表者名">
+            <text x="0" y="15" font-family="'Zen Kaku Gothic New',sans-serif" font-size="14" fill="#1a1a1a">松倉 友樹</text>
+          </svg>
+        </div>
+      </div>
+      <div class="company-row">
+        <div class="company-label">所在地</div>
+        <div class="company-value">〒240-0113 神奈川県三浦郡葉山町長柄1045番地の7</div>
+      </div>
+      <div class="company-row">
+        <div class="company-label">設立</div>
+        <div class="company-value">2018年4月</div>
+      </div>
+      <div class="company-row">
+        <div class="company-label">主な事業</div>
+        <div class="company-value">AI SaaS 開発・運営、不動産管理業、メディア事業</div>
+      </div>
+      <div class="company-row">
+        <div class="company-label">資本金</div>
+        <div class="company-value">1,000,000円</div>
+      </div>
+      <div class="company-row">
+        <div class="company-label">コーポレート</div>
+        <div class="company-value"><a href="https://teraren.com/" target="_blank" style="color:var(--accent);border-bottom:1px solid var(--accent)">https://teraren.com/</a></div>
       </div>
     </div>
   </div>
