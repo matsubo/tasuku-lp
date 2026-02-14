@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>たすく — 管理ダッシュボード</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0f1117;--surface:#1a1d27;--surface2:#222633;--border:#2d3148;
+  --text:#e4e6f0;--muted:#8b8fa3;--accent:#6c7cff;--accent2:#4f5cd6;
+  --green:#3dd68c;--yellow:#f5c542;--red:#f25555;--mono:'SF Mono',Consolas,'Liberation Mono',monospace;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+}
+html{font-size:14px}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.5;min-height:100vh}
+
+/* Layout */
+.layout{display:grid;grid-template-columns:240px 1fr;min-height:100vh}
+@media(max-width:768px){.layout{grid-template-columns:1fr}}
+
+/* Sidebar */
+.sidebar{background:var(--surface);border-right:1px solid var(--border);padding:24px 0;display:flex;flex-direction:column}
+@media(max-width:768px){.sidebar{display:none}}
+.sidebar-brand{padding:0 24px 24px;font-size:1.15rem;font-weight:700;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.sidebar-brand span{opacity:.6;font-size:.75rem;font-weight:400}
+.sidebar-nav{padding:16px 12px;flex:1}
+.sidebar-nav a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:6px;color:var(--muted);text-decoration:none;font-size:.9rem;transition:all .15s}
+.sidebar-nav a:hover,.sidebar-nav a.active{background:var(--surface2);color:var(--text)}
+.sidebar-nav a.active{color:var(--accent)}
+.sidebar-footer{padding:16px 24px;border-top:1px solid var(--border);font-size:.75rem;color:var(--muted)}
+
+/* Main */
+.main{padding:32px;overflow-y:auto}
+.main-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:32px;flex-wrap:wrap;gap:16px}
+.main-header h1{font-size:1.5rem;font-weight:700}
+.header-actions{display:flex;gap:8px}
+
+/* Buttons */
+.btn{padding:8px 16px;border:1px solid var(--border);border-radius:6px;background:var(--surface);color:var(--text);font-size:.85rem;cursor:pointer;transition:all .15s;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.btn:hover{background:var(--surface2);border-color:var(--accent)}
+.btn-primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent2)}
+.btn-sm{padding:5px 10px;font-size:.8rem}
+.btn-danger{color:var(--red);border-color:rgba(242,85,85,.3)}
+.btn-danger:hover{background:rgba(242,85,85,.1)}
+
+/* Stats Cards */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:32px}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:20px}
+.stat-label{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.stat-value{font-size:1.8rem;font-weight:700;line-height:1}
+.stat-sub{font-size:.75rem;color:var(--muted);margin-top:6px}
+.stat-value.green{color:var(--green)}
+.stat-value.yellow{color:var(--yellow)}
+.stat-value.red{color:var(--red)}
+
+/* Tables */
+.table-wrap{background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:24px}
+.table-header{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--border)}
+.table-header h2{font-size:1rem;font-weight:600}
+table{width:100%;border-collapse:collapse}
+th{text-align:left;padding:12px 20px;font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:500;border-bottom:1px solid var(--border)}
+td{padding:14px 20px;border-bottom:1px solid var(--border);font-size:.9rem}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:var(--surface2)}
+
+/* Status badges */
+.badge{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:99px;font-size:.75rem;font-weight:500}
+.badge::before{content:'';width:6px;height:6px;border-radius:50%}
+.badge-running{background:rgba(61,214,140,.1);color:var(--green)}.badge-running::before{background:var(--green)}
+.badge-stopped{background:rgba(139,143,163,.1);color:var(--muted)}.badge-stopped::before{background:var(--muted)}
+.badge-error{background:rgba(242,85,85,.1);color:var(--red)}.badge-error::before{background:var(--red)}
+.badge-trial{background:rgba(245,197,66,.1);color:var(--yellow)}.badge-trial::before{background:var(--yellow)}
+.badge-active{background:rgba(108,124,255,.1);color:var(--accent)}.badge-active::before{background:var(--accent)}
+
+/* Usage bar */
+.usage-bar{width:100%;height:6px;background:var(--surface2);border-radius:3px;overflow:hidden}
+.usage-fill{height:100%;border-radius:3px;transition:width .3s}
+.usage-fill.low{background:var(--green)}
+.usage-fill.mid{background:var(--yellow)}
+.usage-fill.high{background:var(--red)}
+
+/* Tabs */
+.tabs{display:flex;gap:4px;margin-bottom:24px;border-bottom:1px solid var(--border);padding-bottom:-1px}
+.tab{padding:10px 16px;font-size:.85rem;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:all .15s}
+.tab:hover{color:var(--text)}
+.tab.active{color:var(--accent);border-color:var(--accent)}
+
+/* Modal */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:100;align-items:center;justify-content:center}
+.modal-overlay.show{display:flex}
+.modal{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:32px;max-width:500px;width:90%}
+.modal h3{font-size:1.1rem;font-weight:600;margin-bottom:20px}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:.8rem;color:var(--muted);margin-bottom:6px}
+.form-group input,.form-group select{width:100%;padding:10px 12px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:.9rem}
+.form-group input:focus,.form-group select:focus{outline:none;border-color:var(--accent)}
+.form-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:24px}
+
+/* Log viewer */
+.log-viewer{background:#0a0c10;border:1px solid var(--border);border-radius:8px;padding:16px;font-family:var(--mono);font-size:.8rem;color:var(--green);max-height:300px;overflow-y:auto;line-height:1.8}
+.log-viewer .log-time{color:var(--muted)}
+.log-viewer .log-warn{color:var(--yellow)}
+.log-viewer .log-error{color:var(--red)}
+
+/* Section */
+.section{display:none}.section.active{display:block}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- Sidebar -->
+<aside class="sidebar">
+  <div class="sidebar-brand">✅ たすく <span>Admin</span></div>
+  <nav class="sidebar-nav">
+    <a href="#" class="active" data-section="dashboard">📊 ダッシュボード</a>
+    <a href="#" data-section="tenants">👥 テナント管理</a>
+    <a href="#" data-section="containers">🐳 コンテナ</a>
+    <a href="#" data-section="usage">📈 利用量</a>
+    <a href="#" data-section="logs">📋 ログ</a>
+    <a href="#" data-section="settings">⚙️ 設定</a>
+  </nav>
+  <div class="sidebar-footer">たすく Admin v0.1.0<br>© 2026 Teraren LLC</div>
+</aside>
+
+<!-- Main -->
+<main class="main">
+
+<!-- ===== DASHBOARD ===== -->
+<div class="section active" id="sec-dashboard">
+  <div class="main-header">
+    <h1>ダッシュボード</h1>
+    <div class="header-actions">
+      <button class="btn" onclick="refreshAll()">🔄 更新</button>
+      <button class="btn btn-primary" onclick="showModal('add-tenant')">＋ テナント追加</button>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat-card">
+      <div class="stat-label">アクティブテナント</div>
+      <div class="stat-value green" id="stat-tenants">1</div>
+      <div class="stat-sub">全 1 テナント</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">稼働コンテナ</div>
+      <div class="stat-value green" id="stat-containers">2</div>
+      <div class="stat-sub">Gateway + Bot</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">今日のメッセージ</div>
+      <div class="stat-value" id="stat-messages">0</div>
+      <div class="stat-sub">上限: 100 / テナント</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">今月のメッセージ</div>
+      <div class="stat-value" id="stat-monthly">0</div>
+      <div class="stat-sub">上限: 3,000 / テナント</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">API コスト（今月）</div>
+      <div class="stat-value" id="stat-cost">—</div>
+      <div class="stat-sub">Anthropic API</div>
+    </div>
+  </div>
+
+  <!-- Recent tenants -->
+  <div class="table-wrap">
+    <div class="table-header">
+      <h2>テナント一覧</h2>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>テナント</th>
+          <th>プラン</th>
+          <th>ステータス</th>
+          <th>今日の利用</th>
+          <th>コンテナ</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody id="tenant-table">
+        <tr>
+          <td>
+            <div style="font-weight:600">demo</div>
+            <div style="font-size:.75rem;color:var(--muted)">matsubokkuri workspace</div>
+          </td>
+          <td><span class="badge badge-trial">トライアル</span></td>
+          <td><span class="badge badge-running">稼働中</span></td>
+          <td>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span>0 / 100</span>
+              <div class="usage-bar" style="width:80px"><div class="usage-fill low" style="width:0%"></div></div>
+            </div>
+          </td>
+          <td><span class="badge badge-running">Gateway</span> <span class="badge badge-running">Bot</span></td>
+          <td>
+            <button class="btn btn-sm" onclick="viewTenant('demo')">詳細</button>
+            <button class="btn btn-sm btn-danger" onclick="stopTenant('demo')">停止</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ===== TENANTS ===== -->
+<div class="section" id="sec-tenants">
+  <div class="main-header">
+    <h1>テナント管理</h1>
+    <button class="btn btn-primary" onclick="showModal('add-tenant')">＋ テナント追加</button>
+  </div>
+
+  <div class="table-wrap">
+    <div class="table-header"><h2>全テナント</h2></div>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Slack Workspace</th>
+          <th>プラン</th>
+          <th>開始日</th>
+          <th>トライアル期限</th>
+          <th>月額</th>
+          <th>ステータス</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code style="font-family:var(--mono);font-size:.8rem">demo</code></td>
+          <td>matsubokkuri (T067C2GV64B)</td>
+          <td><span class="badge badge-trial">トライアル</span></td>
+          <td>2026-02-14</td>
+          <td>2026-02-28</td>
+          <td>¥10,000</td>
+          <td><span class="badge badge-running">稼働中</span></td>
+          <td>
+            <button class="btn btn-sm">編集</button>
+            <button class="btn btn-sm">SOUL.md</button>
+            <button class="btn btn-sm btn-danger">削除</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Tenant config -->
+  <div class="table-wrap">
+    <div class="table-header"><h2>テナント設定テンプレート</h2></div>
+    <div style="padding:20px">
+      <div class="log-viewer">
+<span class="log-time"># テナント作成手順</span>
+1. mkdir ~/tasuku-tenants/{tenant_id}
+2. cp -r ~/tasuku-tenants/template/ ~/tasuku-tenants/{tenant_id}/
+3. openclaw.json を編集（port, token）
+4. systemd service を作成・有効化
+5. Slack App をインストール
+6. Bot コンテナを起動
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CONTAINERS ===== -->
+<div class="section" id="sec-containers">
+  <div class="main-header">
+    <h1>コンテナ管理</h1>
+    <button class="btn" onclick="refreshContainers()">🔄 更新</button>
+  </div>
+
+  <div class="table-wrap">
+    <div class="table-header"><h2>Docker コンテナ</h2></div>
+    <table>
+      <thead>
+        <tr>
+          <th>コンテナ名</th>
+          <th>イメージ</th>
+          <th>テナント</th>
+          <th>ステータス</th>
+          <th>起動時間</th>
+          <th>ポート</th>
+          <th>CPU / メモリ</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody id="container-table">
+        <tr>
+          <td><code style="font-family:var(--mono)">tasuku-bot</code></td>
+          <td>tasuku-bot:latest</td>
+          <td>demo</td>
+          <td><span class="badge badge-running">Running</span></td>
+          <td id="bot-uptime">—</td>
+          <td>—（host network）</td>
+          <td>—</td>
+          <td>
+            <button class="btn btn-sm" onclick="viewLogs('tasuku-bot')">ログ</button>
+            <button class="btn btn-sm" onclick="restartContainer('tasuku-bot')">再起動</button>
+            <button class="btn btn-sm btn-danger" onclick="stopContainer('tasuku-bot')">停止</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="table-wrap">
+    <div class="table-header"><h2>systemd サービス</h2></div>
+    <table>
+      <thead>
+        <tr><th>サービス名</th><th>テナント</th><th>ステータス</th><th>ポート</th><th>操作</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code style="font-family:var(--mono)">openclaw-demo.service</code></td>
+          <td>demo</td>
+          <td><span class="badge badge-running">active (running)</span></td>
+          <td>3801</td>
+          <td>
+            <button class="btn btn-sm" onclick="viewLogs('openclaw-demo')">ログ</button>
+            <button class="btn btn-sm">再起動</button>
+            <button class="btn btn-sm btn-danger">停止</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Server stats -->
+  <div class="stats">
+    <div class="stat-card">
+      <div class="stat-label">サーバー</div>
+      <div class="stat-value" style="font-size:1.2rem">gmk</div>
+      <div class="stat-sub">Ubuntu 6.8.0 / 8 cores / 32GB</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">ディスク空き</div>
+      <div class="stat-value green" id="stat-disk">535 GB</div>
+      <div class="stat-sub">/ 1TB</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">メモリ使用</div>
+      <div class="stat-value" id="stat-mem">—</div>
+      <div class="stat-sub">/ 32 GB</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">CPU 使用率</div>
+      <div class="stat-value" id="stat-cpu">—</div>
+      <div class="stat-sub">8 cores</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== USAGE ===== -->
+<div class="section" id="sec-usage">
+  <div class="main-header">
+    <h1>利用量モニタリング</h1>
+    <div class="header-actions">
+      <select class="btn" id="usage-tenant-filter">
+        <option value="all">全テナント</option>
+        <option value="demo">demo</option>
+      </select>
+      <select class="btn" id="usage-period">
+        <option value="today">今日</option>
+        <option value="week">今週</option>
+        <option value="month">今月</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat-card">
+      <div class="stat-label">メッセージ数（今日）</div>
+      <div class="stat-value">0</div>
+      <div class="stat-sub">上限 100/日</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">メッセージ数（今月）</div>
+      <div class="stat-value">0</div>
+      <div class="stat-sub">上限 3,000/月</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">推定APIコスト</div>
+      <div class="stat-value">$0.00</div>
+      <div class="stat-sub">Anthropic API</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">平均応答時間</div>
+      <div class="stat-value">—</div>
+      <div class="stat-sub">秒</div>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <div class="table-header"><h2>利用ログ</h2></div>
+    <table>
+      <thead>
+        <tr><th>日時</th><th>テナント</th><th>ユーザー</th><th>メッセージ（先頭）</th><th>トークン</th><th>応答時間</th></tr>
+      </thead>
+      <tbody>
+        <tr><td colspan="6" style="text-align:center;color:var(--muted);padding:40px">まだデータがありません</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ===== LOGS ===== -->
+<div class="section" id="sec-logs">
+  <div class="main-header">
+    <h1>システムログ</h1>
+    <div class="header-actions">
+      <select class="btn" id="log-source">
+        <option value="bot">tasuku-bot</option>
+        <option value="gateway">openclaw-gateway</option>
+        <option value="system">システム</option>
+      </select>
+      <button class="btn" onclick="refreshLogs()">🔄 更新</button>
+    </div>
+  </div>
+  <div class="log-viewer" id="log-output" style="max-height:600px">
+<span class="log-time">[2026-02-14 14:52]</span> ⚡ AI秘書 Bot is running!
+<span class="log-time">[2026-02-14 14:51]</span> <span class="log-warn">[gateway]</span> listening on ws://127.0.0.1:3801 (PID 2931221)
+<span class="log-time">[2026-02-14 14:51]</span> [gateway] agent model: anthropic/claude-opus-4-6
+<span class="log-time">[2026-02-14 14:51]</span> [heartbeat] started
+<span class="log-time">[2026-02-14 05:27]</span> <span class="log-warn">[gateway]</span> chatCompletions endpoint enabled
+  </div>
+</div>
+
+<!-- ===== SETTINGS ===== -->
+<div class="section" id="sec-settings">
+  <div class="main-header"><h1>設定</h1></div>
+
+  <div class="table-wrap">
+    <div class="table-header"><h2>グローバル設定</h2></div>
+    <div style="padding:20px;display:grid;gap:16px;max-width:600px">
+      <div class="form-group">
+        <label>デフォルト AI モデル</label>
+        <select><option>anthropic/claude-opus-4-6</option><option>anthropic/claude-sonnet-4-20250514</option></select>
+      </div>
+      <div class="form-group">
+        <label>メッセージ日次上限（全テナント共通）</label>
+        <input type="number" value="100">
+      </div>
+      <div class="form-group">
+        <label>メッセージ月次上限（全テナント共通）</label>
+        <input type="number" value="3000">
+      </div>
+      <div class="form-group">
+        <label>Gateway ベースポート</label>
+        <input type="number" value="3801">
+      </div>
+      <div class="form-group">
+        <label>Anthropic API Key</label>
+        <input type="password" value="sk-ant-api03-****" placeholder="sk-ant-...">
+      </div>
+      <div><button class="btn btn-primary">保存</button></div>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <div class="table-header"><h2>テナントテンプレート（SOUL.md）</h2></div>
+    <div style="padding:20px">
+      <textarea style="width:100%;min-height:200px;padding:12px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:var(--mono);font-size:.85rem;resize:vertical"># SOUL.md - たすく（Tasuku）
+
+## Core
+- **名前:** たすく
+- **言語:** 日本語デフォルト。英語で聞かれたら英語で返す。
+- **スタイル:** 結論ファースト。シンプルで的確。
+- **トーン:** フレンドリーだけどプロフェッショナル。
+
+## Role
+SlackチームのAI秘書「たすく」。タスク管理、情報検索、文書作成をサポート。</textarea>
+      <div style="margin-top:12px"><button class="btn btn-primary">テンプレート保存</button></div>
+    </div>
+  </div>
+</div>
+
+</main>
+</div>
+
+<!-- Add Tenant Modal -->
+<div class="modal-overlay" id="modal-add-tenant">
+  <div class="modal">
+    <h3>テナント追加</h3>
+    <div class="form-group">
+      <label>テナント ID（英数字）</label>
+      <input type="text" placeholder="例: acme-corp" id="new-tenant-id">
+    </div>
+    <div class="form-group">
+      <label>企業名</label>
+      <input type="text" placeholder="例: 株式会社ACME" id="new-tenant-name">
+    </div>
+    <div class="form-group">
+      <label>Slack Workspace ID</label>
+      <input type="text" placeholder="例: T067C2GV64B" id="new-tenant-slack">
+    </div>
+    <div class="form-group">
+      <label>プラン</label>
+      <select id="new-tenant-plan">
+        <option value="trial">14日間トライアル</option>
+        <option value="campaign">キャンペーン（¥10,000/月）</option>
+        <option value="standard">通常（¥100,000/月）</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Gateway ポート</label>
+      <input type="number" placeholder="自動割当" id="new-tenant-port">
+    </div>
+    <div class="form-actions">
+      <button class="btn" onclick="hideModal('add-tenant')">キャンセル</button>
+      <button class="btn btn-primary" onclick="createTenant()">作成</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// Navigation
+document.querySelectorAll('.sidebar-nav a').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    document.querySelectorAll('.sidebar-nav a').forEach(n => n.classList.remove('active'));
+    a.classList.add('active');
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.getElementById('sec-' + a.dataset.section).classList.add('active');
+  });
+});
+
+// Modal
+function showModal(id) { document.getElementById('modal-' + id).classList.add('show'); }
+function hideModal(id) { document.getElementById('modal-' + id).classList.remove('show'); }
+document.querySelectorAll('.modal-overlay').forEach(m => {
+  m.addEventListener('click', e => { if (e.target === m) m.classList.remove('show'); });
+});
+
+// Placeholder actions
+function refreshAll() { alert('サーバーに接続して最新情報を取得します（未実装）'); }
+function refreshContainers() { alert('docker ps を実行します（未実装）'); }
+function refreshLogs() { alert('ログを更新します（未実装）'); }
+function viewTenant(id) { alert('テナント詳細: ' + id + '（未実装）'); }
+function stopTenant(id) { if(confirm(id + ' を停止しますか？')) alert('停止処理（未実装）'); }
+function viewLogs(name) { document.querySelector('[data-section="logs"]').click(); }
+function restartContainer(name) { if(confirm(name + ' を再起動しますか？')) alert('再起動処理（未実装）'); }
+function stopContainer(name) { if(confirm(name + ' を停止しますか？')) alert('停止処理（未実装）'); }
+function createTenant() {
+  const id = document.getElementById('new-tenant-id').value;
+  if (!id) { alert('テナント ID を入力してください'); return; }
+  alert('テナント "' + id + '" を作成します（未実装）\n\n実行されるコマンド:\n1. mkdir ~/tasuku-tenants/' + id + '\n2. OpenClaw 環境セットアップ\n3. systemd サービス作成\n4. Bot コンテナ起動');
+  hideModal('add-tenant');
+}
+</script>
+</body>
+</html>
