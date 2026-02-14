@@ -765,9 +765,9 @@ footer .container{display:flex;justify-content:space-between;align-items:center;
       </div>
       <div class="problem-card reveal reveal-delay-2" style="text-align:center">
         <div style="font-family:var(--mono);font-size:.7rem;letter-spacing:.15em;color:rgba(246,243,237,.4);margin-bottom:16px">たすくの月額</div>
-        <div style="font-family:var(--serif);font-size:clamp(2rem,4vw,3.5rem);color:var(--accent-light);line-height:1.1">¥10,000</div>
-        <div style="font-size:.85rem;color:rgba(246,243,237,.5);margin-top:8px">オープン記念キャンペーン価格</div>
-        <div style="font-size:.75rem;color:rgba(246,243,237,.3);margin-top:4px">通常 ¥100,000/月</div>
+        <div style="font-family:var(--serif);font-size:clamp(2rem,4vw,3.5rem);color:var(--accent-light);line-height:1.1">¥10,000〜</div>
+        <div style="font-size:.85rem;color:rgba(246,243,237,.5);margin-top:8px">Solo プラン（1ユーザー）</div>
+        <div style="font-size:.75rem;color:rgba(246,243,237,.3);margin-top:4px">Team ¥25,000 / Business ¥40,000</div>
       </div>
       <div class="problem-card reveal reveal-delay-3" style="text-align:center;border-color:rgba(196,83,42,.4)">
         <div style="font-family:var(--mono);font-size:.7rem;letter-spacing:.15em;color:rgba(246,243,237,.4);margin-bottom:16px">ROI（投資対効果）</div>
@@ -796,23 +796,61 @@ footer .container{display:flex;justify-content:space-between;align-items:center;
   <div class="container" style="text-align:center">
     <div class="section-label reveal">Pricing</div>
     <h2 class="section-heading reveal reveal-delay-1">
-      シンプルに、ひとつだけ。
+      チームの規模に合わせて。
     </h2>
-    <div class="pricing-card reveal reveal-delay-2">
-      <div class="pricing-label">Open Campaign</div>
-      <div style="font-family:var(--gothic);font-size:.85rem;color:rgba(246,243,237,.4);margin-bottom:8px"><s>通常価格 ¥100,000 /月</s></div>
-      <div class="pricing-amount">¥10,000<span> /月</span></div>
-      <div class="pricing-period">1ユーザーあたり（税別）· オープン記念 <span style="color:var(--accent-light);font-weight:700">90% OFF</span></div>
-      <ul class="pricing-features">
-        <li>リサーチ・翻訳・文書作成・データ分析 — 全機能制限なし</li>
-        <li>あなた専用のAI環境（他社とデータ共有なし）</li>
-        <li>Slack ワークスペースへの即日導入</li>
-        <li>30言語以上対応（日/英/中/韓 他）</li>
-        <li>APIキー・技術知識不要（すべてセットアップ済み）</li>
-        <li>14日間の無料トライアル</li>
-      </ul>
-      <a href="https://docs.google.com/forms/d/15O4R-dDpbyBuw1RTuokzY0lZ30pwNdBrPKolRtn5zII/viewform" class="pricing-btn">14日間 無料で試す</a>
+    <p class="section-body reveal reveal-delay-2" style="margin:0 auto 48px;text-align:center">
+      すべてのプランに全機能・14日間無料トライアル付き。
+    </p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;max-width:960px;margin:0 auto">
+
+      <!-- Solo -->
+      <div class="pricing-card reveal reveal-delay-1" style="max-width:none;margin:0">
+        <div class="pricing-label">Solo</div>
+        <div class="pricing-amount">¥10,000<span> /月</span></div>
+        <div class="pricing-period">1ユーザーまで（税別）</div>
+        <ul class="pricing-features">
+          <li>全機能を制限なく利用可能</li>
+          <li>100メッセージ/日</li>
+          <li>専用AI環境</li>
+          <li>14日間無料トライアル</li>
+        </ul>
+        <a href="https://docs.google.com/forms/d/15O4R-dDpbyBuw1RTuokzY0lZ30pwNdBrPKolRtn5zII/viewform" class="pricing-btn">無料で試す</a>
+      </div>
+
+      <!-- Team -->
+      <div class="pricing-card reveal reveal-delay-2" style="max-width:none;margin:0;border:2px solid var(--accent)">
+        <div class="pricing-label" style="display:flex;align-items:center;gap:8px;justify-content:center">Team <span style="background:var(--accent);color:#fff;padding:2px 10px;border-radius:99px;font-size:.65rem;letter-spacing:.05em">人気</span></div>
+        <div class="pricing-amount">¥25,000<span> /月</span></div>
+        <div class="pricing-period">3ユーザーまで（税別）</div>
+        <ul class="pricing-features">
+          <li>全機能を制限なく利用可能</li>
+          <li>ユーザーあたり100メッセージ/日</li>
+          <li>専用AI環境</li>
+          <li>14日間無料トライアル</li>
+        </ul>
+        <a href="https://docs.google.com/forms/d/15O4R-dDpbyBuw1RTuokzY0lZ30pwNdBrPKolRtn5zII/viewform" class="pricing-btn">無料で試す</a>
+      </div>
+
+      <!-- Business -->
+      <div class="pricing-card reveal reveal-delay-3" style="max-width:none;margin:0">
+        <div class="pricing-label">Business</div>
+        <div class="pricing-amount">¥40,000<span> /月</span></div>
+        <div class="pricing-period">5ユーザーまで（税別）</div>
+        <ul class="pricing-features">
+          <li>全機能を制限なく利用可能</li>
+          <li>ユーザーあたり100メッセージ/日</li>
+          <li>専用AI環境</li>
+          <li>14日間無料トライアル</li>
+        </ul>
+        <a href="https://docs.google.com/forms/d/15O4R-dDpbyBuw1RTuokzY0lZ30pwNdBrPKolRtn5zII/viewform" class="pricing-btn">無料で試す</a>
+      </div>
+
     </div>
+
+    <p class="reveal reveal-delay-4" style="margin-top:32px;font-size:.85rem;color:var(--muted)">
+      6名以上のチームは<a href="https://docs.google.com/forms/d/15O4R-dDpbyBuw1RTuokzY0lZ30pwNdBrPKolRtn5zII/viewform" style="color:var(--accent);border-bottom:1px solid var(--accent)">お問い合わせ</a>ください。
+    </p>
   </div>
 </section>
 
