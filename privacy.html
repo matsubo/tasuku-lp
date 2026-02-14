@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>プライバシーポリシー — たすく（Tasuku）</title>
+<meta name="description" content="AI秘書サービス「たすく（Tasuku）」のプライバシーポリシーです。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ink:#1a1a1a;--paper:#f6f3ed;--cream:#ece7db;--accent:#c4532a;
+  --accent-light:#e8704a;--sage:#5a7a64;--sage-light:#e8efe9;
+  --muted:#8a8478;--border:#d4cfc5;
+  --serif:'Instrument Serif',serif;--mincho:'Shippori Mincho',serif;
+  --gothic:'Zen Kaku Gothic New',sans-serif;--mono:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--gothic);color:var(--ink);background:var(--paper);line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:256px 256px}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px clamp(24px,5vw,80px);display:flex;justify-content:space-between;align-items:center;background:rgba(246,243,237,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--mincho);font-size:1.35rem;font-weight:600;letter-spacing:.02em;display:flex;align-items:center;gap:8px;color:var(--ink);text-decoration:none}
+.nav-logo span{font-size:1.5rem}
+.nav-back{font-family:var(--gothic);font-size:.8rem;font-weight:500;color:var(--muted);text-decoration:none}
+.nav-back:hover{color:var(--ink)}
+
+.legal{max-width:720px;margin:0 auto;padding:120px clamp(24px,5vw,48px) 80px}
+.legal h1{font-family:var(--mincho);font-size:clamp(1.8rem,4vw,2.5rem);font-weight:700;margin-bottom:8px;line-height:1.3}
+.legal .subtitle{font-family:var(--serif);font-size:1.1rem;color:var(--muted);font-style:italic;margin-bottom:12px}
+.legal .updated{font-family:var(--mono);font-size:.75rem;color:var(--muted);margin-bottom:48px;letter-spacing:.05em}
+.legal h2{font-family:var(--mincho);font-size:1.2rem;font-weight:600;margin:48px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.legal h3{font-family:var(--mincho);font-size:1.05rem;font-weight:600;margin:24px 0 8px}
+.legal p,.legal li{font-size:.95rem;color:var(--ink);line-height:1.9;margin-bottom:12px}
+.legal ul,.legal ol{padding-left:1.5em;margin-bottom:16px}
+.legal li{margin-bottom:6px}
+.legal table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:.9rem}
+.legal th,.legal td{padding:12px 16px;border:1px solid var(--border);text-align:left}
+.legal th{background:var(--cream);font-weight:600;font-size:.85rem}
+
+footer{padding:48px clamp(24px,5vw,80px);border-top:1px solid var(--border)}
+footer .f-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-brand{font-family:var(--mincho);font-weight:500}
+.footer-meta{font-size:.75rem;color:var(--muted);display:flex;gap:24px}
+.footer-meta a{color:var(--muted);text-decoration:none}
+.footer-meta a:hover{color:var(--ink)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><span>📎</span> たすく</a>
+  <a href="index.html" class="nav-back">← トップへ戻る</a>
+</nav>
+
+<main class="legal">
+<h1>プライバシーポリシー</h1>
+<div class="subtitle">Privacy Policy</div>
+<div class="updated">最終更新日: 2026年2月14日</div>
+
+<p>合同会社テラレン（以下「当社」）は、AI秘書サービス「たすく」（以下「本サービス」）における個人情報の取扱いについて、個人情報の保護に関する法律（個人情報保護法）に基づき、以下のとおりプライバシーポリシーを定めます。</p>
+
+<h2>1. 収集する情報</h2>
+<p>当社は、本サービスの提供にあたり、以下の情報を取得します。</p>
+
+<h3>1-1. ご登録時に提供いただく情報</h3>
+<ul>
+  <li>氏名、メールアドレス、会社名</li>
+  <li>Slackワークスペース情報（ワークスペース名、ID）</li>
+  <li>お支払い情報（クレジットカード情報は決済代行会社が管理）</li>
+</ul>
+
+<h3>1-2. Slack連携により取得する情報</h3>
+<p>本サービスはSlack Botとして動作するため、以下の情報にアクセスします。</p>
+<ul>
+  <li>Slackユーザープロフィール（表示名、アイコン）</li>
+  <li>本サービス宛のメッセージ内容（メンション・DMで送信されたテキスト・ファイル）</li>
+  <li>チャンネル情報（本サービスが参加しているチャンネルのメタデータ）</li>
+</ul>
+<p><strong>注意:</strong> 本サービスは、明示的にメンションまたはDMで送信されたメッセージのみを処理します。チャンネル内の全メッセージを常時監視・保存することはありません。</p>
+
+<h3>1-3. 外部サービス連携により取得する情報</h3>
+<ul>
+  <li>Google Calendar / Microsoft 365：カレンダーイベント情報（利用者が連携を許可した場合のみ）</li>
+</ul>
+
+<h3>1-4. 自動的に取得する情報</h3>
+<ul>
+  <li>アクセスログ（IPアドレス、ブラウザ情報、アクセス日時）</li>
+  <li>利用状況データ（機能の利用頻度、エラーログ）</li>
+</ul>
+
+<h2>2. 利用目的</h2>
+<p>取得した個人情報は、以下の目的で利用します。</p>
+<ol>
+  <li>本サービスの提供・運営・維持</li>
+  <li>利用者からのお問い合わせへの対応</li>
+  <li>利用料金の請求・決済処理</li>
+  <li>本サービスの改善・新機能の開発</li>
+  <li>利用規約に違反する行為への対応</li>
+  <li>サービスに関する重要なお知らせの送付</li>
+  <li>匿名化・統計化した上でのサービス分析</li>
+</ol>
+
+<h2>3. 第三者提供</h2>
+<p>当社は、以下の場合を除き、個人情報を第三者に提供しません。</p>
+<ol>
+  <li>利用者の同意がある場合</li>
+  <li>法令に基づき開示が必要な場合</li>
+  <li>人の生命・身体・財産の保護に必要な場合</li>
+  <li>業務委託先に対して、業務遂行に必要な範囲で提供する場合（この場合、委託先に対し適切な監督を行います）</li>
+</ol>
+
+<h3>利用する外部サービス</h3>
+<table>
+  <tr><th>サービス名</th><th>利用目的</th><th>提供情報</th></tr>
+  <tr><td>Slack API</td><td>Bot機能の提供</td><td>メッセージ内容、ユーザー情報</td></tr>
+  <tr><td>OpenAI API / Anthropic API</td><td>AI処理</td><td>処理対象テキスト（匿名化処理後）</td></tr>
+  <tr><td>Stripe</td><td>決済処理</td><td>決済に必要な情報</td></tr>
+  <tr><td>Google Cloud Platform</td><td>インフラ・データ保管</td><td>サービスデータ全般</td></tr>
+</table>
+
+<h2>4. 安全管理措置</h2>
+<p>当社は、個人情報の漏洩・滅失・毀損の防止のため、以下の安全管理措置を講じています。</p>
+<ul>
+  <li><strong>通信の暗号化:</strong> すべての通信はTLS 1.2以上で暗号化</li>
+  <li><strong>データの暗号化:</strong> 保存データはAES-256で暗号化</li>
+  <li><strong>アクセス制御:</strong> 従業員のアクセス権限を必要最小限に制限</li>
+  <li><strong>ログ管理:</strong> アクセスログの記録・監視</li>
+  <li><strong>定期的なセキュリティレビュー:</strong> 脆弱性診断の実施</li>
+</ul>
+
+<h2>5. データの保存期間</h2>
+<ul>
+  <li>メッセージデータ: 処理完了後、90日間保持した後に削除</li>
+  <li>アカウント情報: 解約後、30日間保持した後に削除</li>
+  <li>アクセスログ: 取得から1年間保持</li>
+  <li>法令により保存が義務づけられるデータ: 法定期間保持</li>
+</ul>
+
+<h2>6. 開示・訂正・削除の請求</h2>
+<p>利用者は、当社に対して以下の請求を行うことができます。</p>
+<ol>
+  <li>個人情報の開示請求</li>
+  <li>個人情報の訂正・追加・削除の請求</li>
+  <li>個人情報の利用停止・消去の請求</li>
+  <li>個人情報の第三者提供の停止の請求</li>
+</ol>
+<p>請求は、下記のお問い合わせ窓口までご連絡ください。本人確認の上、合理的な期間内に対応します。</p>
+
+<h2>7. Cookie・トラッキング技術</h2>
+<p>当社ウェブサイトでは、以下の目的でCookieを使用することがあります。</p>
+<ul>
+  <li>ログインセッションの維持</li>
+  <li>ウェブサイトの利用状況の分析（Google Analytics等）</li>
+</ul>
+<p>ブラウザの設定によりCookieを無効にすることができますが、一部の機能が制限される場合があります。</p>
+
+<h2>8. 本ポリシーの変更</h2>
+<p>当社は、必要に応じて本ポリシーを変更することがあります。重要な変更については、ウェブサイト上での告知またはメールにより利用者に通知します。</p>
+
+<h2>9. お問い合わせ</h2>
+<p>個人情報の取扱いに関するお問い合わせは、以下までご連絡ください。</p>
+<table>
+  <tr><th>事業者名</th><td>合同会社テラレン（Teraren LLC）</td></tr>
+  <tr><th>個人情報保護管理者</th><td>[松倉友樹]</td></tr>
+  <tr><th>所在地</th><td>東京都港区西麻布 [要更新：具体番地]</td></tr>
+  <tr><th>メール</th><td>[info@teraren.com]</td></tr>
+</table>
+
+</main>
+
+<footer>
+  <div class="f-inner">
+    <div class="footer-brand">📎 たすく — by 合同会社テラレン</div>
+    <div class="footer-meta">
+      <a href="terms.html">利用規約</a>
+      <a href="privacy.html">プライバシーポリシー</a>
+      <a href="contact.html">お問い合わせ</a>
+      <span>© 2026 Teraren LLC</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

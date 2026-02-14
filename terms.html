@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>利用規約 — たすく（Tasuku）</title>
+<meta name="description" content="AI秘書サービス「たすく（Tasuku）」の利用規約です。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ink:#1a1a1a;--paper:#f6f3ed;--cream:#ece7db;--accent:#c4532a;
+  --accent-light:#e8704a;--sage:#5a7a64;--sage-light:#e8efe9;
+  --muted:#8a8478;--border:#d4cfc5;
+  --serif:'Instrument Serif',serif;--mincho:'Shippori Mincho',serif;
+  --gothic:'Zen Kaku Gothic New',sans-serif;--mono:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--gothic);color:var(--ink);background:var(--paper);line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:256px 256px}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px clamp(24px,5vw,80px);display:flex;justify-content:space-between;align-items:center;background:rgba(246,243,237,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--mincho);font-size:1.35rem;font-weight:600;letter-spacing:.02em;display:flex;align-items:center;gap:8px;color:var(--ink);text-decoration:none}
+.nav-logo span{font-size:1.5rem}
+.nav-back{font-family:var(--gothic);font-size:.8rem;font-weight:500;color:var(--muted);text-decoration:none}
+.nav-back:hover{color:var(--ink)}
+
+.legal{max-width:720px;margin:0 auto;padding:120px clamp(24px,5vw,48px) 80px}
+.legal h1{font-family:var(--mincho);font-size:clamp(1.8rem,4vw,2.5rem);font-weight:700;margin-bottom:8px;line-height:1.3}
+.legal .subtitle{font-family:var(--serif);font-size:1.1rem;color:var(--muted);font-style:italic;margin-bottom:12px}
+.legal .updated{font-family:var(--mono);font-size:.75rem;color:var(--muted);margin-bottom:48px;letter-spacing:.05em}
+.legal h2{font-family:var(--mincho);font-size:1.2rem;font-weight:600;margin:48px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.legal h3{font-family:var(--mincho);font-size:1.05rem;font-weight:600;margin:24px 0 8px}
+.legal p,.legal li{font-size:.95rem;color:var(--ink);line-height:1.9;margin-bottom:12px}
+.legal ul,.legal ol{padding-left:1.5em;margin-bottom:16px}
+.legal li{margin-bottom:6px}
+.legal table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:.9rem}
+.legal th,.legal td{padding:12px 16px;border:1px solid var(--border);text-align:left}
+.legal th{background:var(--cream);font-weight:600;font-size:.85rem}
+
+footer{padding:48px clamp(24px,5vw,80px);border-top:1px solid var(--border)}
+footer .f-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-brand{font-family:var(--mincho);font-weight:500}
+.footer-meta{font-size:.75rem;color:var(--muted);display:flex;gap:24px}
+.footer-meta a{color:var(--muted);text-decoration:none}
+.footer-meta a:hover{color:var(--ink)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><span>📎</span> たすく</a>
+  <a href="index.html" class="nav-back">← トップへ戻る</a>
+</nav>
+
+<main class="legal">
+<h1>利用規約</h1>
+<div class="subtitle">Terms of Service</div>
+<div class="updated">最終更新日: 2026年2月14日</div>
+
+<p>本利用規約（以下「本規約」）は、合同会社テラレン（以下「当社」）が提供するAI秘書サービス「たすく」（以下「本サービス」）の利用条件を定めるものです。本サービスをご利用いただくにあたり、本規約に同意いただく必要があります。</p>
+
+<h2>第1条（サービス概要）</h2>
+<p>本サービスは、Slack Bot 型の AI 秘書サービスです。スケジュール管理、リサーチ、翻訳、議事録作成、経費処理、日報作成等の業務支援をSlack上で提供します。</p>
+<ol>
+  <li>本サービスは、お客様のSlackワークスペースにインストールして利用するSaaS型サービスです。</li>
+  <li>本サービスの具体的な機能・仕様は、当社が別途定めるところによります。</li>
+  <li>当社は、本サービスの内容を予告なく変更・追加・廃止することがあります。</li>
+</ol>
+
+<h2>第2条（利用登録）</h2>
+<ol>
+  <li>本サービスの利用を希望する方は、当社所定の方法により利用登録を行ってください。</li>
+  <li>当社は、以下の場合に利用登録を拒否することがあります。
+    <ul>
+      <li>登録内容に虚偽、誤記または記載漏れがあった場合</li>
+      <li>過去に本規約に違反したことがある場合</li>
+      <li>その他、当社が利用登録を適当でないと判断した場合</li>
+    </ul>
+  </li>
+  <li>利用登録が完了した時点で、利用者と当社の間に本規約に基づく利用契約が成立します。</li>
+</ol>
+
+<h2>第3条（料金・支払い）</h2>
+<ol>
+  <li>本サービスの利用料金は以下の通りです。
+    <table>
+      <tr><th>プラン</th><th>月額料金（税別）</th><th>備考</th></tr>
+      <tr><td>通常プラン</td><td>¥100,000 / ユーザー</td><td>全機能利用可能</td></tr>
+      <tr><td>オープンキャンペーン</td><td>¥10,000 / ユーザー</td><td>期間限定 90%OFF</td></tr>
+    </table>
+  </li>
+  <li>利用者は、当社が指定する方法により、利用料金を支払うものとします。</li>
+  <li>14日間の無料トライアル期間があります。トライアル期間終了後、明示的にプランを選択するまで課金は発生しません。</li>
+  <li>支払いを遅延した場合、年14.6%の遅延損害金を支払うものとします。</li>
+</ol>
+
+<h2>第4条（禁止事項）</h2>
+<p>利用者は、本サービスの利用にあたり、以下の行為を行ってはなりません。</p>
+<ol>
+  <li>法令または公序良俗に違反する行為</li>
+  <li>犯罪行為に関連する行為</li>
+  <li>当社のサーバーまたはネットワークに過度な負荷をかける行為</li>
+  <li>本サービスの運営を妨害する行為</li>
+  <li>他の利用者の情報を不正に収集・蓄積する行為</li>
+  <li>不正アクセスまたはこれを試みる行為</li>
+  <li>他の利用者に成りすます行為</li>
+  <li>本サービスを逆コンパイル、リバースエンジニアリング、逆アセンブルする行為</li>
+  <li>反社会的勢力に対する利益供与その他の協力行為</li>
+  <li>その他、当社が不適切と判断する行為</li>
+</ol>
+
+<h2>第5条（知的財産権）</h2>
+<ol>
+  <li>本サービスに関する知的財産権はすべて当社または正当な権利者に帰属します。</li>
+  <li>利用者が本サービスを通じて入力したデータの権利は、利用者に帰属します。</li>
+  <li>当社は、サービスの改善・開発のため、匿名化・統計化した利用データを利用することがあります。</li>
+</ol>
+
+<h2>第6条（免責事項）</h2>
+<ol>
+  <li>当社は、本サービスが利用者の特定の目的に適合すること、期待する機能・正確性・有用性を有すること、および不具合が生じないことを保証しません。</li>
+  <li>本サービスはAI技術を利用しているため、出力内容の正確性を完全に保証するものではありません。重要な業務判断については、利用者自身でご確認ください。</li>
+  <li>当社は、本サービスの利用により利用者に生じた損害について、当社に故意または重過失がある場合を除き、一切の責任を負いません。</li>
+  <li>当社が責任を負う場合でも、賠償額は過去12ヶ月間に利用者が支払った利用料金の総額を上限とします。</li>
+</ol>
+
+<h2>第7条（サービスの中断・停止）</h2>
+<ol>
+  <li>当社は、以下の場合に本サービスの全部または一部を中断・停止できるものとします。
+    <ul>
+      <li>システムの保守・点検・更新を行う場合</li>
+      <li>地震・落雷・火災等の不可抗力により提供が困難な場合</li>
+      <li>その他、当社がやむを得ないと判断した場合</li>
+    </ul>
+  </li>
+  <li>当社は、前項に基づく中断・停止により利用者に生じた損害について責任を負いません。</li>
+</ol>
+
+<h2>第8条（解約）</h2>
+<ol>
+  <li>利用者は、当社所定の方法により、いつでも本サービスを解約できます。</li>
+  <li>解約の場合、既に支払われた利用料金は返金しません。</li>
+  <li>当社は、利用者が本規約に違反した場合、事前の通知なく利用契約を解除できます。</li>
+</ol>
+
+<h2>第9条（個人情報の取扱い）</h2>
+<p>当社は、本サービスの利用により取得する個人情報を、当社の<a href="privacy.html">プライバシーポリシー</a>に従い適切に取り扱います。</p>
+
+<h2>第10条（本規約の変更）</h2>
+<ol>
+  <li>当社は、必要に応じて本規約を変更できるものとします。</li>
+  <li>変更後の規約は、当社ウェブサイト上での掲載をもって効力を生じます。</li>
+  <li>重要な変更については、30日前までに利用者に通知します。</li>
+</ol>
+
+<h2>第11条（準拠法・管轄）</h2>
+<ol>
+  <li>本規約の解釈および適用は、日本法に準拠します。</li>
+  <li>本サービスに関して紛争が生じた場合、東京地方裁判所を第一審の専属的合意管轄裁判所とします。</li>
+</ol>
+
+<h2>特定商取引法に基づく表記</h2>
+<table>
+  <tr><th>事業者名</th><td>合同会社テラレン（Teraren LLC）</td></tr>
+  <tr><th>代表者</th><td>[松倉友樹]</td></tr>
+  <tr><th>所在地</th><td>東京都港区西麻布 [要更新：具体番地]</td></tr>
+  <tr><th>連絡先</th><td>[info@teraren.com]</td></tr>
+  <tr><th>サービス名</th><td>たすく（Tasuku）</td></tr>
+  <tr><th>販売価格</th><td>通常 ¥100,000/月・キャンペーン ¥10,000/月（税別・1ユーザーあたり）</td></tr>
+  <tr><th>支払方法</th><td>クレジットカード決済</td></tr>
+  <tr><th>支払時期</th><td>月額・毎月自動課金</td></tr>
+  <tr><th>サービス提供時期</th><td>利用登録完了後、直ちに利用可能</td></tr>
+  <tr><th>返品・キャンセル</th><td>デジタルサービスのため返品不可。解約はいつでも可能。既払料金の返金はなし。</td></tr>
+</table>
+
+</main>
+
+<footer>
+  <div class="f-inner">
+    <div class="footer-brand">📎 たすく — by 合同会社テラレン</div>
+    <div class="footer-meta">
+      <a href="terms.html">利用規約</a>
+      <a href="privacy.html">プライバシーポリシー</a>
+      <a href="contact.html">お問い合わせ</a>
+      <span>© 2026 Teraren LLC</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
